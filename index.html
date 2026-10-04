@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Divya Rao — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #fafafa;
+        --ink: #17171a;
+        --ink-soft: #4a4a52;
+        --ink-faint: #85858f;
+        --line: #e4e1da;
+        --serif: "DM Serif Text", serif;
+        --mono: "IBM Plex Mono", monospace;
+        --sans: "IBM Plex Sans", sans-serif;
+
+        --c1: #ff9b71; /* coral */
+        --c2: #4200ff; /* indigo */
+        --c3: #0adeb7; /* teal */
+        --c4: #ffbd23; /* amber */
+        --c5: #b400ff; /* violet */
+        --c6: #3466bb; /* blue */
+        --c7: #faacac; /* blush */
+        --c8: #bdd120; /* chartreuse */
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+      }
+      img {
+        max-width: 100%;
+      }
+      [hidden] {
+        display: none !important;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--serif);
+        font-weight: 400;
+        margin: 0;
+      }
+      .overline {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+      .wrap {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .rule {
+        border: none;
+        border-top: 2px solid var(--ink);
+        margin: 0;
+      }
+
+      /* ---------- nav ---------- */
+      header {
+        position: sticky;
+        top: 0;
+        background: color-mix(in srgb, var(--paper) 90%, transparent);
+        backdrop-filter: blur(6px);
+        border-bottom: 1px solid var(--line);
+        z-index: 20;
+      }
+      nav {
+        padding: 30px clamp(24px, 5vw, 64px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      nav .brand {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 28px;
+      }
+      nav .links {
+        display: flex;
+        gap: 36px;
+        flex-wrap: wrap;
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 20px;
+      }
+      nav .links a {
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        padding-bottom: 2px;
+      }
+      nav .links a:hover {
+        border-color: var(--c2);
+      }
+
+      /* ---------- hero ---------- */
+      .hero {
+        height: calc(100vh - 96px);
+        min-height: 560px;
+        box-sizing: border-box;
+        padding: 40px 0;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+      }
+      @media (max-width: 680px) {
+        .hero {
+          height: auto;
+          min-height: calc(100vh - 96px);
+          grid-template-columns: 1fr;
+          padding: 40px 0;
+        }
+      }
+      .hero .wave {
+        font-size: 28px;
+      }
+      .hero-intro {
+        font-family: var(--mono);
+        font-size: 20px;
+        line-height: 1.65;
+        color: var(--ink);
+        max-width: 56ch;
+      }
+      .hero-intro .lead {
+        display: block;
+        margin-bottom: 22px;
+      }
+      .hero-art {
+        display: flex;
+        justify-content: center;
+      }
+      .hero-art img {
+        width: 100%;
+        max-width: 300px;
+        display: block;
+      }
+
+      /* ---------- sections ---------- */
+      section {
+        padding: 56px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
+      }
+      .section-head h2 {
+        font-size: 30px;
+      }
+
+      /* ---------- work section header ---------- */
+      .bar-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        border-top: 2px solid var(--ink);
+        border-bottom: 2px solid var(--ink);
+        padding: 20px 4px;
+        margin-bottom: 56px;
+      }
+      .bar-head h2 {
+        font-size: 34px;
+      }
+      .bar-head .cats {
+        font-family: var(--mono);
+        font-size: 15px;
+        color: var(--ink);
+      }
+
+      /* ---------- work section: full-bleed, breaks out of .wrap ---------- */
+      #work,
+      #skills,
+      #about {
+        padding: 56px clamp(24px, 5vw, 64px);
+        border-bottom: none;
+      }
+      .work-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 44px 32px;
+      }
+      @media (max-width: 900px) {
+        .work-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 600px) {
+        .work-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .work-item {
+        position: relative;
+        margin: 14px 0 0 14px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .work-item .shadow {
+        position: absolute;
+        top: -14px;
+        left: -14px;
+        width: 100%;
+        height: 100%;
+        border: 2px solid var(--ink);
+        z-index: 0;
+      }
+      .work-item .front {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: var(--paper);
+        border: 2px solid var(--ink);
+        transition: transform 0.15s ease;
+      }
+      .work-item:hover .front {
+        transform: translate(-4px, -4px);
+      }
+      .work-item .date-row {
+        padding: 12px 18px;
+        border-bottom: 2px solid var(--ink);
+        font-family: var(--mono);
+        font-size: 14.5px;
+      }
+      .work-item .title-row {
+        padding: 16px 18px;
+        border-bottom: 2px solid var(--ink);
+      }
+      .work-item .title-row h3 {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 1.15;
+      }
+      .work-item .thumb {
+        aspect-ratio: 4 / 3;
+        flex: none;
+        background: var(--line);
+        border-bottom: 2px solid var(--ink);
+        overflow: hidden;
+      }
+      .work-item .thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .work-item .meta-row {
+        padding: 12px 18px;
+        font-family: var(--mono);
+        font-size: 13.5px;
+        line-height: 1.45;
+        color: var(--ink-soft);
+      }
+
+      /* ---------- skills ---------- */
+      .skills-rows {
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+      }
+      .skills-row {
+        display: flex;
+        gap: 32px;
+        align-items: flex-start;
+      }
+      .skills-label {
+        flex: none;
+        width: 200px;
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 24px;
+        padding-top: 8px;
+      }
+      .skill-boxes {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .skill-box {
+        border: 1.5px solid var(--ink);
+        padding: 9px 16px;
+        font-family: var(--mono);
+        font-size: 14px;
+        white-space: nowrap;
+      }
+      @media (max-width: 720px) {
+        .skills-row {
+          flex-direction: column;
+          gap: 14px;
+        }
+        .skills-label {
+          width: auto;
+          padding-top: 0;
+        }
+      }
+
+      /* ---------- about ---------- */
+      .about-wrap {
+        max-width: 1100px;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 56px;
+      }
+      @media (max-width: 680px) {
+        .about-wrap {
+          grid-template-columns: 1fr;
+        }
+      }
+      .about-wrap p {
+        font-size: 16.5px;
+        line-height: 1.65;
+        color: var(--ink-soft);
+        margin: 0 0 16px;
+      }
+      .about-wrap p:first-child {
+        color: var(--ink);
+        font-size: 19px;
+        font-family: var(--serif);
+      }
+      .swatches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-content: flex-start;
+      }
+      .swatch {
+        width: 58px;
+        height: 58px;
+        border-radius: 12px;
+        border: 1.5px solid var(--ink);
+      }
+
+      /* ---------- contact / footer ---------- */
+      .contact-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 20px;
+      }
+      .btn {
+        font-family: var(--mono);
+        font-size: 13px;
+        text-decoration: none;
+        padding: 10px 18px;
+        border-radius: 999px;
+        border: 1.5px solid var(--ink);
+        display: inline-block;
+      }
+      .btn.filled {
+        background: var(--ink);
+        color: var(--paper);
+      }
+      footer {
+        padding: 40px 0 64px;
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--ink-faint);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-badges {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .footer-label {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--ink);
+      }
+      .shadow-badge {
+        position: relative;
+        display: inline-block;
+        margin: 4px 0 0 4px;
+      }
+      .shadow-badge::before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        width: 100%;
+        height: 100%;
+        background: var(--amber);
+        border: 1.5px solid var(--ink);
+        z-index: 0;
+      }
+      .shadow-badge a {
+        position: relative;
+        z-index: 1;
+        display: block;
+        background: var(--paper);
+        border: 1.5px solid var(--ink);
+        padding: 6px 14px;
+        font-family: var(--mono);
+        font-size: 12.5px;
+        text-decoration: none;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <span class="brand">divya rao</span>
+        <div class="links">
+          <a href="#work">work</a>
+          <a href="#skills">skills</a>
+          <a href="#about">about</a>
+          <a href="#contact">contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="wrap">
+        <section class="hero" id="top">
+        <div class="hero-intro">
+          <span class="lead">Hi, I'm Divya —</span>
+          a product manager with 2 years in software engineering and 2 years in product. I went
+          from building commerce systems handling <strong>10L+ orders/day</strong> to leading
+          product at <strong>LehLah</strong>, where I manage a team of 4 across a
+          <strong>14K+ MAU creator app</strong> and a
+          <strong>0→1 B2B SaaS product with 16+ paying clients.</strong>
+        </div>
+        <div class="hero-art">
+          <img src="images/hero-animation.gif" alt="Animated illustration" />
+        </div>
+        </section>
+      </div>
+
+      <section id="work">
+        <div class="bar-head">
+          <h2>work</h2>
+          <span class="cats">product / engineering / systems</span>
+        </div>
+        <div class="work-grid">
+          <a class="work-item" href="paid-collab.html">
+            <div class="shadow" style="background: linear-gradient(135deg, #312014, #20160f)"></div>
+            <div class="front">
+              <div class="date-row">2025 – Present</div>
+              <div class="title-row"><h3>Paid Collab</h3></div>
+              <div class="thumb"><img src="images/creatives/paid-collab.png" alt="" /></div>
+              <div class="meta-row">Acquisition channel for creators.</div>
+            </div>
+          </a>
+          <a
+            class="work-item"
+            href="https://dsrao711.github.io/divya-portfolio/campaign-report"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="shadow" style="background: linear-gradient(135deg, #183152, #1e3b60)"></div>
+            <div class="front">
+              <div class="date-row">2025 – Present</div>
+              <div class="title-row"><h3>Campaign Report</h3></div>
+              <div class="thumb"><img src="images/creatives/campaign-report.png" alt="" /></div>
+              <div class="meta-row">ROI indicator for any influencer marketing campaign.</div>
+            </div>
+          </a>
+          <a
+            class="work-item"
+            href="https://dsrao711.github.io/divya-portfolio/brand-pmf"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="shadow" style="background: linear-gradient(135deg, #482f1f, #130d09)"></div>
+            <div class="front">
+              <div class="date-row">2025 – Present</div>
+              <div class="title-row"><h3>Brand PMF</h3></div>
+              <div class="thumb"><img src="images/creatives/brand-pmf.png" alt="" /></div>
+              <div class="meta-row">Presenting 13K+ monetizing active creators to brands.</div>
+            </div>
+          </a>
+          <a
+            class="work-item"
+            href="https://dsrao711.github.io/divya-portfolio/eng-catalogue"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="shadow" style="background: linear-gradient(135deg, #6b7987, #1e3b60)"></div>
+            <div class="front">
+              <div class="date-row">2022 – 2024</div>
+              <div class="title-row"><h3>Order Journey Engine</h3></div>
+              <div class="thumb"><img src="images/creatives/eng-catalogue.png" alt="" /></div>
+              <div class="meta-row">Configurable order journey engine.</div>
+            </div>
+          </a>
+          <a
+            class="work-item"
+            href="https://dsrao711.github.io/divya-portfolio/eng-oms-regression"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="shadow" style="background: linear-gradient(135deg, #747272, #130d09)"></div>
+            <div class="front">
+              <div class="date-row">2022 – 2023</div>
+              <div class="title-row"><h3>Regression Testing</h3></div>
+              <div class="thumb"><img src="images/creatives/eng-oms-regression.png" alt="" /></div>
+              <div class="meta-row">Reduced testing efforts by 30%.</div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="bar-head">
+          <h2>skills</h2>
+          <span class="cats">in order of relevance / proficiency</span>
+        </div>
+        <div class="skills-rows">
+          <div class="skills-row">
+            <div class="skills-label">Product Management</div>
+            <div class="skill-boxes">
+              <span class="skill-box">Prompt Engineering</span>
+              <span class="skill-box">LLM Evaluation</span>
+              <span class="skill-box">GTM Strategy</span>
+              <span class="skill-box">Pricing Strategy</span>
+              <span class="skill-box">Roadmap Prioritization</span>
+              <span class="skill-box">Requirement Analysis</span>
+              <span class="skill-box">Sprint Planning</span>
+              <span class="skill-box">A/B Testing</span>
+              <span class="skill-box">Product Analytics</span>
+              <span class="skill-box">SQL</span>
+            </div>
+          </div>
+          <div class="skills-row">
+            <div class="skills-label">Technical</div>
+            <div class="skill-boxes">
+              <span class="skill-box">Microservices</span>
+              <span class="skill-box">Python</span>
+              <span class="skill-box">Flask</span>
+              <span class="skill-box">FastAPI</span>
+              <span class="skill-box">LLM Integration (Anthropic Claude API)</span>
+              <span class="skill-box">HTML</span>
+              <span class="skill-box">CSS</span>
+              <span class="skill-box">Bootstrap</span>
+              <span class="skill-box">Kafka</span>
+              <span class="skill-box">Redis</span>
+              <span class="skill-box">MySQL</span>
+              <span class="skill-box">MongoDB</span>
+              <span class="skill-box">Docker</span>
+              <span class="skill-box">Kubernetes</span>
+              <span class="skill-box">AWS Services</span>
+            </div>
+          </div>
+          <div class="skills-row">
+            <div class="skills-label">Tools</div>
+            <div class="skill-boxes">
+              <span class="skill-box">Figma</span>
+              <span class="skill-box">Claude</span>
+              <span class="skill-box">Claude Code</span>
+              <span class="skill-box">Lovable</span>
+              <span class="skill-box">Jira</span>
+              <span class="skill-box">Sentry</span>
+              <span class="skill-box">New Relic</span>
+              <span class="skill-box">Coralogix</span>
+              <span class="skill-box">Jenkins</span>
+              <span class="skill-box">GitLab</span>
+              <span class="skill-box">Azure</span>
+              <span class="skill-box">Google Analytics</span>
+              <span class="skill-box">PostHog</span>
+              <span class="skill-box">CleverTap</span>
+              <span class="skill-box">Tableau</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="bar-head">
+          <h2>about</h2>
+          <span class="cats">a little more about me</span>
+        </div>
+        <div class="about-wrap">
+          <div>
+            <p>
+              I started my career in software engineering because I wanted to understand how
+              technology gets built.
+            </p>
+            <p>
+              Over time, I became increasingly interested in the decisions that happened before the
+              code: what problem to solve, why it mattered, which trade-offs to make and whether the
+              product actually worked.
+            </p>
+            <p>That led me into Product Management.</p>
+            <p>
+              Today, I work across product strategy, execution, growth, monetisation and increasingly
+              business problems. My engineering background continues to influence how I think about
+              feasibility, systems and technical trade-offs.
+            </p>
+          </div>
+          <div>
+            <div class="overline" style="margin-bottom: 14px">scope of ownership</div>
+            <div class="swatches">
+              <div class="swatch" style="background: var(--c1)" title="Code"></div>
+              <div class="swatch" style="background: var(--c2)" title="Product"></div>
+              <div class="swatch" style="background: var(--c3)" title="Growth"></div>
+              <div class="swatch" style="background: var(--c4)" title="Business"></div>
+              <div class="swatch" style="background: var(--c5)" title="Leadership"></div>
+            </div>
+            <ol style="list-style: none; margin: 16px 0 0; padding: 0; font-size: 14px; color: var(--ink-soft)">
+              <li>Code — how do we build it?</li>
+              <li>Product — what should we build?</li>
+              <li>Growth — how do we get people to use it?</li>
+              <li>Business — how does it make money?</li>
+              <li>Leadership — where should the product go next?</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="wrap">
+      <footer id="contact">
+        <span>© 2026 Divya Rao</span>
+        <span class="footer-badges">
+          <span class="footer-label">contact:</span>
+          <span class="shadow-badge"><a href="mailto:divyarao0712@gmail.com">divyarao0712@gmail.com</a></span>
+          <span class="shadow-badge"><a href="tel:+919987907159">call</a></span>
+          <span class="shadow-badge"
+            ><a
+              href="https://docs.google.com/document/d/1dIUvghjwl3_uQzCLZRgr0ND8jpx2DRUcdcPipu2itkU/edit?usp=sharing"
+              target="_blank"
+              rel="noopener"
+              >resume</a
+            ></span
+          >
+          <span class="shadow-badge"><a href="#linkedin">linkedin</a></span>
+          <span class="shadow-badge"><a href="#github">github</a></span>
+        </span>
+        <span>built with curiosity, systems thinking, and an unreasonable number of product notes.</span>
+      </footer>
+    </div>
+  </body>
+</html>
