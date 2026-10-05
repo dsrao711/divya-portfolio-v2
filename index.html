@@ -366,6 +366,128 @@
         border: 1.5px solid var(--ink);
       }
 
+      /* ---------- about: personal ---------- */
+      .personal-about {
+        max-width: 1200px;
+        margin-top: 64px;
+        display: flex;
+        flex-direction: column;
+        gap: 72px;
+      }
+      .personal-row {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 36px;
+        align-items: center;
+      }
+      .personal-row.reverse {
+        grid-template-columns: 1fr auto;
+      }
+      .personal-overline {
+        font-family: var(--mono);
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        color: var(--ink-faint);
+        margin-bottom: 14px;
+      }
+      .personal-copy p {
+        font-family: var(--mono);
+        font-size: 15.5px;
+        line-height: 1.75;
+        color: var(--ink-soft);
+        margin: 0 0 18px;
+      }
+      .personal-copy p:last-child {
+        margin-bottom: 0;
+      }
+      .personal-copy .highlight {
+        text-decoration: underline;
+        text-decoration-color: var(--c4);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 3px;
+        color: var(--ink);
+      }
+      .polaroid-stack {
+        display: flex;
+        gap: 18px;
+      }
+      .polaroid {
+        margin: 0;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        box-shadow: 0 10px 24px rgba(23, 23, 26, 0.14);
+        padding: 10px 10px 28px;
+        width: 170px;
+        flex-shrink: 0;
+      }
+      .polaroid img {
+        display: block;
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+      }
+      .polaroid-stack .polaroid:first-child {
+        transform: rotate(-3deg);
+      }
+      .polaroid-stack .polaroid:last-child {
+        transform: rotate(2deg);
+      }
+      .polaroid-stack.single .polaroid {
+        transform: rotate(-2deg);
+        width: 190px;
+      }
+      .hobby-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 22px;
+        width: 100%;
+        max-width: 560px;
+      }
+      .hobby-card {
+        position: relative;
+        margin: 8px 0 0 8px;
+      }
+      .hobby-card .shadow {
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        width: 100%;
+        height: 100%;
+        border: 2px solid var(--ink);
+        z-index: 0;
+      }
+      .hobby-card .front {
+        position: relative;
+        z-index: 1;
+        display: block;
+        background: var(--paper);
+        border: 2px solid var(--ink);
+        overflow: hidden;
+      }
+      .hobby-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+      }
+      @media (max-width: 900px) {
+        .personal-row,
+        .personal-row.reverse {
+          grid-template-columns: 1fr;
+        }
+        .polaroid-stack {
+          order: 2;
+        }
+        .hobby-grid {
+          max-width: 100%;
+        }
+      }
+      @media (max-width: 520px) {
+        .hobby-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
       /* ---------- contact / footer ---------- */
       .contact-links {
         display: flex;
@@ -627,6 +749,64 @@
               <li>Business — how does it make money?</li>
               <li>Leadership — where should the product go next?</li>
             </ol>
+          </div>
+        </div>
+        <div class="personal-about">
+          <div class="personal-row">
+            <div class="polaroid-stack">
+              <figure class="polaroid"><img src="images/about/travel-archway.webp" alt="Divya standing in a hand-painted archway in Jaipur, India" loading="lazy" /></figure>
+              <figure class="polaroid"><img src="images/about/travel-sunset.webp" alt="Divya watching the sunset by the sea" loading="lazy" /></figure>
+            </div>
+            <div class="personal-copy">
+              <div class="personal-overline">a little bit about me :)</div>
+              <p>
+                Born and brought up in Mumbai, I'm a traveller at heart. I love exploring new cities,
+                experiencing different cultures, trying local food, and taking way too many pictures
+                along the way.
+              </p>
+              <p>
+                I have a soft spot for the smell of new books, black coffee, and FRIENDS reruns.
+                Personality-wise, I'm Monica at work, Rachel when it comes to fashion, and a little
+                Phoebe everywhere else.
+              </p>
+            </div>
+            <div class="polaroid-stack single">
+              <figure class="polaroid"><img src="images/about/travel-colosseum.webp" alt="Divya in front of the Colosseum in Rome" loading="lazy" /></figure>
+            </div>
+          </div>
+
+          <div class="personal-row reverse">
+            <div class="personal-copy">
+              <div class="personal-overline">outside the 9–5</div>
+              <p>
+                You'll usually find me planning my next trip, experimenting with a recipe I found on
+                Instagram, watching podcasts, keeping up with Paris Fashion Week, or picking up a new
+                book.
+              </p>
+              <p>
+                My bookshelf is a mix of everything, but
+                <span class="highlight">Tuesdays with Morrie</span> and
+                <span class="highlight">The Love Hypothesis</span> are two favourites. &#9992;&#65039;&#128218;&#9749;
+              </p>
+            </div>
+            <div class="hobby-grid">
+              <figure class="hobby-card">
+                <span class="shadow"></span>
+                <span class="front"><img src="images/about/hobby-book.webp" alt="Tuesdays with Morrie book cover" loading="lazy" /></span>
+              </figure>
+              <figure class="hobby-card">
+                <span class="shadow"></span>
+                <span class="front"><img src="images/about/hobby-coffee.webp" alt="Illustration of a cat holding a mug of black coffee" loading="lazy" /></span>
+              </figure>
+              <figure class="hobby-card">
+                <span class="shadow"></span>
+                <span class="front"><img src="images/about/hobby-fashion.webp" alt="Painting of women crossing a street in fashionable outfits" loading="lazy" /></span>
+              </figure>
+              <figure class="hobby-card">
+                <span class="shadow"></span>
+                <span class="front"><img src="images/about/hobby-food.webp" alt="Illustration of a plate of spaghetti" loading="lazy" /></span>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
